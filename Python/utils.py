@@ -1,7 +1,7 @@
 class Input:
 
     def __init__(self, data):
-        self.data = data
+        self.__data = data
 
     @classmethod
     def test(cls, data: str):
@@ -13,13 +13,13 @@ class Input:
             return cls(f.read())
 
     def __repr__(self):
-        return f'Input: {self.data}'
+        return f'Input: {self.__data}'
 
     def raw(self) -> str:
-        return self.data
+        return self.__data
 
     def lines(self) -> list:
-        return list(self.data.splitlines())
+        return list(self.__data.splitlines())
 
     def ints(self) -> list:
         return list(map(int, self.lines()))

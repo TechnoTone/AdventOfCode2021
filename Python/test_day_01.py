@@ -1,10 +1,10 @@
-import utils
+from utils import Input
 import day_01
 
 TEST_INPUT = '199\n200\n208\n210\n200\n207\n240\n269\n260\n263'
-TEST_DATA = utils.Input.test(TEST_INPUT).ints()
+TEST_DATA = Input.test(TEST_INPUT).ints()
 
-DATA = utils.Input.day(1).ints()
+DATA = Input.day(1).ints()
 
 
 def test_day_01_part_1_ex_01():
