@@ -1,6 +1,3 @@
-import utils
-
-
 def bitCounts(input: list, pos: int) -> int:
     return len(list(filter(lambda x: x[pos] == '1', input)))
 
