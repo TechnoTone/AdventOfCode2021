@@ -1,6 +1,3 @@
-import utils
-
-
 def increases(input: list, offset: int) -> int:
     increases = 0
 

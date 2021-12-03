@@ -1,6 +1,3 @@
-import utils
-
-
 def parse(input: str) -> (int, int):
     direction = input.split()[0]
     distance = int(input.split()[1])

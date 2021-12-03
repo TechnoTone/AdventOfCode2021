@@ -6,33 +6,27 @@ def bitCounts(input: list, pos: int) -> int:
 
 
 def part_1(input: list) -> int:
-    gamma = ''
-    epsilon = ''
+    result = 0
     for n in range(len(input[0])):
-        if bitCounts(input, n) * 2 > len(input):
-            gamma += '1'
-            epsilon += '0'
+        if bitCounts(input, n) * 2 >= len(input):
+            result = result * 2 + 1
         else:
-            gamma += '0'
-            epsilon += '1'
+            result = result * 2
 
-    return int(gamma, 2) * int(epsilon, 2)
+    max = 2 ** len(input[0]) - 1
+
+    return result * (max - result)
 
 
-def filterCandidates(fn, candidates) -> int:
-    n = 0
-    while len(candidates) > 1:
-        if fn(bitCounts(candidates, n)*2, len(candidates)):
-            candidates = list(filter(lambda x: x[n] == '1', candidates))
-        else:
-            candidates = list(filter(lambda x: x[n] == '0', candidates))
-        n += 1
+def filterCandidates(fn, candidates, pos=0) -> int:
+    if len(candidates) == 1:
+        return int(candidates[0], 2)
 
-    return int(candidates[0], 2)
+    target = '1' if fn(bitCounts(candidates, pos) *
+                       2, len(candidates)) else '0'
+
+    return filterCandidates(fn, list(filter(lambda x: x[pos] == target, candidates)), pos + 1)
 
 
 def part_2(input: list) -> int:
-    ogr = filterCandidates(lambda a, b: a >= b, input)
-    csr = filterCandidates(lambda a, b: a < b, input)
-
-    return ogr * csr
+    return filterCandidates(lambda a, b: a >= b, input) * filterCandidates(lambda a, b: a < b, input)
