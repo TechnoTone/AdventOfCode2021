@@ -8,6 +8,11 @@ class Input:
         return cls(data)
 
     @classmethod
+    def ex(cls, day: int, ex: int):
+        with open(f'input/day{day}ex{ex}.txt') as f:
+            return cls(f.read())
+
+    @classmethod
     def day(cls, day: int):
         with open(f'input/day{day}.txt') as f:
             return cls(f.read())
