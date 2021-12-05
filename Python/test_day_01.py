@@ -1,14 +1,12 @@
 from utils import Input
 import day_01
 
-TEST_INPUT = '199\n200\n208\n210\n200\n207\n240\n269\n260\n263'
-TEST_DATA = Input.test(TEST_INPUT).ints()
-
+EXAMPLE = Input.ex(1, 1).ints()
 DATA = Input.day(1).ints()
 
 
 def test_day_01_part_1_ex_01():
-    assert day_01.part_1(TEST_DATA) == 7
+    assert day_01.part_1(EXAMPLE) == 7
 
 
 def test_day_01_part_1_solution():
@@ -16,7 +14,7 @@ def test_day_01_part_1_solution():
 
 
 def test_day_01_part_2_ex_01():
-    assert day_01.part_2(TEST_DATA) == 5
+    assert day_01.part_2(EXAMPLE) == 5
 
 
 def test_day_01_part_2_solution():
