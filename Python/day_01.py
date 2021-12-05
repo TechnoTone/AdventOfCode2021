@@ -1,3 +1,11 @@
+def part_1(input: list) -> int:
+    return increases(input, 1)
+
+
+def part_2(input: list) -> int:
+    return increases(input, 3)
+
+
 def increases(input: list, offset: int) -> int:
     increases = 0
 
@@ -6,11 +14,3 @@ def increases(input: list, offset: int) -> int:
             increases += 1
 
     return increases
-
-
-def part_1(input: list) -> int:
-    return increases(input, 1)
-
-
-def part_2(input: list) -> int:
-    return increases(input, 3)
