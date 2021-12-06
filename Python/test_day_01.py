@@ -1,8 +1,8 @@
-from utils import Input
 import day_01
+from utils import Input
 
-EXAMPLE = Input.ex(1, 1).ints()
-DATA = Input.day(1).ints()
+EXAMPLE = Input.ex(1, 1).linesOfInts()
+DATA = Input.day(1).linesOfInts()
 
 
 def test_day_01_part_1_ex_01():

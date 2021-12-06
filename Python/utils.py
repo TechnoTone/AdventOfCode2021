@@ -26,5 +26,8 @@ class Input:
     def lines(self) -> list:
         return list(self.__data.splitlines())
 
-    def ints(self) -> list:
+    def linesOfInts(self) -> list:
         return list(map(int, self.lines()))
+
+    def ints(self) -> list:
+        return list(map(int, self.__data.split(',')))
