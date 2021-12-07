@@ -2,8 +2,7 @@ import statistics
 
 
 def part_1(input: list) -> int:
-    median = statistics.median(input)
-    return sum(map(lambda x: abs(x - median), input))
+    return sum(map(lambda x: abs(x - statistics.median(input)), input))
 
 
 def part_2(input: list) -> int:
@@ -21,12 +20,12 @@ def part_2(input: list) -> int:
     for num in range(_min, _max + 1):
         total_fuel[num] = 0
 
-    triangles = [0, 1]
-    while len(triangles) <= (_max - _min):
-        triangles.append(triangles[-1] + len(triangles))
-
     for num in range(_min, _max + 1):
         for k in unique.keys():
-            total_fuel[num] += triangles[abs(num - k)] * unique[k]
+            total_fuel[num] += triangle(abs(num - k)) * unique[k]
 
     return min(total_fuel.values())
+
+
+def triangle(n: int) -> int:
+    return n * (n + 1) // 2
