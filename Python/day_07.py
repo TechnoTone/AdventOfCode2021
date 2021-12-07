@@ -27,6 +27,6 @@ def part_2(input: list) -> int:
 
     for num in range(_min, _max + 1):
         for k in unique.keys():
-            total_fuel[num] += (triangles[abs(num - k)] * unique[k])
+            total_fuel[num] += triangles[abs(num - k)] * unique[k]
 
     return min(total_fuel.values())
