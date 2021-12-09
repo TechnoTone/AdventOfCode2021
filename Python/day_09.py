@@ -85,6 +85,10 @@ def expandBasin(x, y, heightmap):
 
     while len(edges) > 0:
         x, y = edges.pop()
+
+        if (x, y) in locations:
+            continue
+
         locations.add((x, y))
 
         loc_height = loc(x, y)
