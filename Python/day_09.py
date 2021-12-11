@@ -5,13 +5,12 @@ def part_1(input: list) -> int:
     width = len(input[0])
     height = len(input)
 
-    heightmap = heightMap(input)
-    low_points = lowPoints(heightmap)
+    low_points = lowPoints(input)
 
     risk = 0
 
     for x, y in low_points:
-        risk += 1 + heightmap[y][x]
+        risk += 1 + input[y][x]
 
     return risk
 
@@ -20,28 +19,15 @@ def part_2(input: list) -> int:
     width = len(input[0])
     height = len(input)
 
-    heightmap = heightMap(input)
-    low_points = lowPoints(heightmap)
+    low_points = lowPoints(input)
 
     basins = []
 
     for x, y in low_points:
-        basins.append(expandBasin(x, y, heightmap))
+        basins.append(expandBasin(x, y, input))
 
     basins.sort(reverse=True)
     return reduce(lambda x, y: x * y, basins[:3])
-
-
-def heightMap(input: list) -> list:
-    width = len(input[0])
-    height = len(input)
-
-    result = []
-    for y in range(len(input)):
-        row = list(map(int, input[y]))
-        result.append(row)
-
-    return result
 
 
 def lowPoints(heightmap: list) -> list:

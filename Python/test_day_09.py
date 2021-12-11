@@ -1,8 +1,8 @@
 import day_09
 from utils import Input
 
-EXAMPLE = Input.ex(9, 1).lines()
-DATA = Input.day(9).lines()
+EXAMPLE = Input.ex(9, 1).linesOfDigits()
+DATA = Input.day(9).linesOfDigits()
 
 
 def test_day_09_part_1_ex_01():
