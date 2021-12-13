@@ -1,3 +1,6 @@
+from typing import Tuple
+
+
 def part_1(input: list) -> int:
     values = [parse(line) for line in input]
     horizontal = 0
@@ -22,17 +25,13 @@ def part_2(input: list) -> int:
     return horizontal * depth
 
 
-def parse(input: str) -> (int, int):
-    direction = input.split()[0]
-    distance = int(input.split()[1])
-
-    if direction == 'forward':
-        return (distance, 0)
-    elif direction == 'backward':
-        return (-distance, 0)
-    elif direction == 'down':
-        return (0, distance)
-    elif direction == 'up':
-        return (0, -distance)
+def parse(input: str) -> Tuple(int, int):
+    match input.split():
+        case 'forward', distance:
+            return (int(distance), 0)
+        case "down", distance:
+            return (0, int(distance))
+        case 'up', distance:
+            return (0, -int(distance))
 
     return (0, 0)
