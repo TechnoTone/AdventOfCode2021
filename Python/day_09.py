@@ -2,13 +2,8 @@ from functools import reduce
 
 
 def part_1(input: list) -> int:
-    width = len(input[0])
-    height = len(input)
-
     low_points = lowPoints(input)
-
     risk = 0
-
     for x, y in low_points:
         risk += 1 + input[y][x]
 
@@ -16,13 +11,8 @@ def part_1(input: list) -> int:
 
 
 def part_2(input: list) -> int:
-    width = len(input[0])
-    height = len(input)
-
     low_points = lowPoints(input)
-
     basins = []
-
     for x, y in low_points:
         basins.append(expandBasin(x, y, input))
 

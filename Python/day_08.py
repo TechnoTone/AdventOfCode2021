@@ -1,6 +1,3 @@
-from functools import cmp_to_key
-
-
 def part_1(input: list) -> int:
     signals = map(parseLine, input)
     counts = map(countDigits, signals)

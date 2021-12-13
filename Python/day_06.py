@@ -18,10 +18,10 @@ def fish_1(input: list, iterations: int) -> int:
 
 def fish_2(input: list, iterations: int) -> int:
     fishPopulation = list(map(lambda n: input.count(n), range(9)))
-    for day in range(iterations):
+    for _ in range(iterations):
         newFishPopulation = [0] * 9
         for i in range(8):
-            newFishPopulation[i] = fishPopulation[i+1]
+            newFishPopulation[i] = fishPopulation[i + 1]
         newFishPopulation[6] += fishPopulation[0]
         newFishPopulation[8] = fishPopulation[0]
         fishPopulation = newFishPopulation

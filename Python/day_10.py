@@ -1,6 +1,3 @@
-from functools import reduce
-
-
 def part_1(input: list) -> int:
     return sum(syntaxErrorScore(line) for line in input)
 

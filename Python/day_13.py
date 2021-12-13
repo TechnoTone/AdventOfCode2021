@@ -1,3 +1,6 @@
+from typing import Tuple
+
+
 def part_1(input: list) -> int:
     (coordinates, folds) = parse(input)
     fold(coordinates, [folds[0]])
@@ -10,7 +13,7 @@ def part_2(input: list) -> list:
     return printed_coordinates(coordinates)
 
 
-def parse(input: list) -> (set, list):
+def parse(input: list) -> Tuple[set, list]:
     coordinates = set()
     folds = []
 

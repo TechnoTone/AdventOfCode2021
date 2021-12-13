@@ -1,3 +1,6 @@
+from typing import Tuple
+
+
 def part_1(input: list) -> int:
     numbers, boards = parseInput(input)
     return play(numbers, boards, True)
@@ -8,16 +11,16 @@ def part_2(input: list) -> int:
     return play(numbers, boards, False)
 
 
-def parseInput(input: list) -> (list, list):
-    numbers = list(map(int, input[0].split(',')))
+def parseInput(input: list) -> Tuple[list, list]:
+    numbers = list(map(int, input[0].split(",")))
     boards = []
     for n in range(2, len(input), 6):
-        boards.append(parseBoard(input[n:n+5]))
+        boards.append(parseBoard(input[n : n + 5]))
 
     return numbers, boards
 
 
-def parseBoard(input: list) -> (list, list):
+def parseBoard(input: list) -> Tuple[list, list]:
     rows = []
     cols = [[], [], [], [], []]
 
@@ -42,7 +45,7 @@ def play(numbers: list, boards: list, findFirst=True) -> int:
 
         for board in boards:
             score = boardScore(board)
-            if (score > 0):
+            if score > 0:
                 if findFirst or len(boards) == 1:
                     return score * num
                 boards.remove(board)

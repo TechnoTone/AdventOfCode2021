@@ -25,7 +25,7 @@ def part_2(input: list) -> int:
     return horizontal * depth
 
 
-def parse(input: str) -> Tuple(int, int):
+def parse(input: str) -> Tuple[int, int]:
     match input.split():
         case 'forward', distance:
             return (int(distance), 0)
