@@ -4,7 +4,7 @@ def part_1(input: list) -> int:
     return len(coordinates)
 
 
-def part_2(input: list) -> int:
+def part_2(input: list) -> list:
     (coordinates, folds) = parse(input)
     fold(coordinates, folds)
     return printed_coordinates(coordinates)
@@ -38,7 +38,7 @@ def fold(coordinates: set, folds: list):
                     coordinates.add((coordinate[0], amount * 2 - coordinate[1]))
 
 
-def printed_coordinates(coordinates):
+def printed_coordinates(coordinates) -> list:
     result = []
     max_x = max(map(lambda c: c[0], coordinates))
     max_y = max(map(lambda c: c[1], coordinates))
