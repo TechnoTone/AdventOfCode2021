@@ -59,7 +59,7 @@ def expand_template(template: list, rules: dict, iterations: int) -> list:
 
 def expand_counters(template: str, rules: dict, iterations: int) -> Counter:
     # A better solution that tracks the counts of each element.
-    template_pairs = [template[i : i + 2] for i in range(len(template) - 1)]
+    template_pairs = [a + b for a, b in list(zip(template, template[1:]))]
     pairs = Counter(template_pairs)  # track all the pairs to be expanded
     counts = Counter(template)
 
