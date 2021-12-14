@@ -19,8 +19,7 @@ def filterCandidates(fn, candidates, pos=0) -> int:
     if len(candidates) == 1:
         return int(candidates[0], 2)
 
-    target = '1' if fn(bitCounts(candidates, pos) *
-                       2, len(candidates)) else '0'
+    target = '1' if fn(bitCounts(candidates, pos) * 2, len(candidates)) else '0'
 
     return filterCandidates(fn, list(filter(lambda x: x[pos] == target, candidates)), pos + 1)
 

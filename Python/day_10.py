@@ -1,3 +1,6 @@
+from functools import reduce
+
+
 def part_1(input: list) -> int:
     return sum(syntaxErrorScore(line) for line in input)
 
@@ -11,19 +14,11 @@ def greaterThanZero(value: int) -> bool:
     return value > 0
 
 
-matching = {}
-matching["("] = ")"
-matching["["] = "]"
-matching["{"] = "}"
-matching["<"] = ">"
+matching = {"(": ")", "[": "]", "{": "}", "<": ">"}
 
 
 def syntaxErrorScore(line: str) -> int:
-    scores = {}
-    scores[")"] = 3
-    scores["]"] = 57
-    scores["}"] = 1197
-    scores[">"] = 25137
+    scores = {")": 3, "]": 57, "}": 1197, ">": 25137}
 
     chunks = []
     for next in line:
@@ -40,11 +35,7 @@ def syntaxErrorScore(line: str) -> int:
 
 
 def completionScore(line: str) -> int:
-    scores = {}
-    scores["("] = 1
-    scores["["] = 2
-    scores["{"] = 3
-    scores["<"] = 4
+    scores = {"(": 1, "[": 2, "{": 3, "<": 4}
 
     chunks = []
     for next in line:
@@ -57,11 +48,7 @@ def completionScore(line: str) -> int:
             if matching[opener] != next:
                 return 0  # corrupted line
 
-    score = 0
-    while len(chunks) > 0:
-        score = score * 5 + scores[chunks.pop()]
-
-    return score
+    return reduce(lambda x, a: x * 5 + scores[a], reversed(chunks), 0)
 
 
 def isOpening(char: str) -> bool:

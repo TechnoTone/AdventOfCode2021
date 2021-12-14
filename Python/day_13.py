@@ -29,22 +29,24 @@ def parse(input: list) -> Tuple[set, list]:
 
 
 def fold(coordinates: set, folds: list):
+    # updates coordinates based on the list of folds
     for (direction, amount) in folds:
         for coordinate in list(coordinates):
+            x, y = coordinate
             if direction == "x":
-                if coordinate[0] > amount:
+                if x > amount:
                     coordinates.remove(coordinate)
-                    coordinates.add((amount * 2 - coordinate[0], coordinate[1]))
+                    coordinates.add((amount * 2 - x, y))
             elif direction == "y":
-                if coordinate[1] > amount:
+                if y > amount:
                     coordinates.remove(coordinate)
-                    coordinates.add((coordinate[0], amount * 2 - coordinate[1]))
+                    coordinates.add((x, amount * 2 - y))
 
 
-def printed_coordinates(coordinates) -> list:
+def printed_coordinates(coordinates: set) -> list:
     result = []
-    max_x = max(map(lambda c: c[0], coordinates))
-    max_y = max(map(lambda c: c[1], coordinates))
+    max_x = max(c[0] for c in coordinates)
+    max_y = max(c[1] for c in coordinates)
     for y in range(max_y + 1):
         row = ""
         for x in range(max_x + 1):

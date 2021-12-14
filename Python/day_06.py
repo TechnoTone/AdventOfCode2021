@@ -9,8 +9,8 @@ def part_2(input: list) -> int:
 def fish_1(input: list, iterations: int) -> int:
     # First naive brute force solution
     # Worked ok for part 1 but was too slow for part 2
-    for i in range(iterations):
-        for j in range(len(list(filter(lambda n: n == 0, input)))):
+    for _ in range(iterations):
+        for _ in range(len(list(filter(lambda n: n == 0, input)))):
             input.append(9)
         input = list(map(lambda n: n - 1 if n > 0 else 6, input))
     return len(input)

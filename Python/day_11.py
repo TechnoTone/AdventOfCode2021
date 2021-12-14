@@ -12,7 +12,7 @@ def part_2(input: list) -> int:
     while True:
         steps += 1
         flashes, input = step(input)
-        if flashes == 100:
+        if flashes == 100:  # All octopuses flashed
             return steps
 
 

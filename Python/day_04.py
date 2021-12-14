@@ -25,11 +25,9 @@ def parseBoard(input: list) -> Tuple[list, list]:
     cols = [[], [], [], [], []]
 
     for line in input:
-        ns = list(map(int, line.split()))
-        row = []
-        for i in range(len(ns)):
-            cols[i].append(ns[i])
-            row.append(ns[i])
+        row = list(map(int, line.split()))
+        for i in range(len(row)):
+            cols[i].append(row[i])
         rows.append(row)
 
     return rows, cols
@@ -55,10 +53,9 @@ def play(numbers: list, boards: list, findFirst=True) -> int:
 
 def boardScore(board) -> int:
     rows, cols = board
-    if min(map(len, rows)) == 0:
+    if list(filter(lambda x: not x, rows + cols)):
         return sumRemaining(rows)
-    if min(map(len, cols)) == 0:
-        return sumRemaining(cols)
+
     return 0
 
 
