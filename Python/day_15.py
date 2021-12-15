@@ -10,7 +10,7 @@ def part_2(input: list) -> int:
     return lowestRiskPath(tiles)
 
 
-def lowestRiskPath(input: list, x: int = 0, y: int = 0) -> int:
+def lowestRiskPath(input: list) -> int:
     paths = {}
     for y in range(len(input)):
         for x in range(len(input[0])):
@@ -34,6 +34,7 @@ def lowestRiskPath(input: list, x: int = 0, y: int = 0) -> int:
         return input[loc[1]][loc[0]]
 
     # Dijkstra to the rescue!
+    # Except it isn't really Dijkstra, just inspired by him.
     while True:
         for y in range(len(input[0])):
             for x in range(len(input)):
