@@ -1,49 +1,46 @@
-def part_1(xs, ys) -> int:
-    return foo(xs, ys)
+def part_1(xs: tuple, ys: tuple) -> int:
+    return max(foo(xs, ys).values())
 
 
-def part_2(input: list) -> int:
-    return 0
+def part_2(xs: tuple, ys: tuple) -> int:
+    return len(foo(xs, ys))
 
 
-def foo(xs, ys) -> int:
+def foo(xs, ys) -> dict:
     # potential x velocities
     possible_vx = []
-    for vx in range(xs[0], xs[1] + 1):
-        v = 0
-        while vx > 0:
-            v += 1
-            vx -= v
-        if vx == 0:
-            possible_vx.append(v)
+    for vx in range(1, xs[1] + 1):
+        v = vx
+        x = 0
+        while v > 0 and x < xs[0]:
+            x += v
+            v -= 1
+        if xs[0] <= x <= xs[1]:
+            possible_vx.append(vx)
 
-    # testing y velocities
-    possible_heights = []
-    vy = 0
-    last_vy = 0
-    while True:
-        vy += 1
+    def in_zone(loc) -> bool:
+        (x, y) = loc
+        return xs[0] <= x <= xs[1] and ys[0] <= y <= ys[1]
 
-        for vx in possible_vx:
-            y = 0
-            v = vy
+    def step(loc, v) -> tuple:
+        drag = -1 if v[0] > 0 else 0
+        return (tuple(map(sum, zip(loc, v))), tuple(map(sum, zip(v, (drag, -1)))))
+
+    possible_velocities = dict()
+    for vx in possible_vx:
+
+        # test y velocities
+        for vy in range(-75, 75):  # used trial-and-error to narrow down this range
+            loc = (0, 0)
+            v = (vx, vy)
             height = 0
-            for _ in range(vx):
-                y += v
-                v -= 1
-                height = max(height, y)
-            while y > ys[1]:
-                # this is crude and I feel like it should be possible to
-                # overshoot the target area but it seems to work to yay!
-                y += v
-                v -= 1
-                height = max(height, y)
-            if ys[0] <= y <= ys[1]:
-                possible_heights.append(height)
-                last_vy = vy
+            while loc[0] < xs[0]:
+                loc, v = step(loc, v)
+                height = max(height, loc[1])
+            while loc[0] <= xs[1] and loc[1] >= ys[0]:
+                if in_zone(loc):
+                    possible_velocities[(vx, vy)] = height
+                loc, v = step(loc, v)
+                height = max(height, loc[1])
 
-        if 0 < last_vy < vy - 100:
-            # keep searching until nothing better for 100 steps
-            break
-
-    return max(possible_heights)
+    return possible_velocities
