@@ -1,12 +1,12 @@
 def part_1(xs: tuple, ys: tuple) -> int:
-    return max(foo(xs, ys).values())
+    return max(get_velocities(xs, ys).values())
 
 
 def part_2(xs: tuple, ys: tuple) -> int:
-    return len(foo(xs, ys))
+    return len(get_velocities(xs, ys))
 
 
-def foo(xs, ys) -> dict:
+def get_velocities(xs, ys) -> dict:
     # potential x velocities
     possible_vx = []
     for vx in range(1, xs[1] + 1):
