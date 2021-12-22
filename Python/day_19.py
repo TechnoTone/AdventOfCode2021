@@ -1,5 +1,6 @@
 from collections import defaultdict
 from itertools import permutations
+from Extras import Point3D
 
 
 def part_1(input: list) -> int:
@@ -18,44 +19,6 @@ def part_2(input: list) -> int:
             for a, b in permutations(scanners, 2)
         ]
     )
-
-
-class Point3D:
-    def __init__(self, x, y, z):
-        self.x, self.y, self.z = x, y, z
-
-    def __eq__(self, other):
-        return self.x == other.x and self.y == other.y and self.z == other.z
-
-    def __sub__(self, other):
-        return Point3D(self.x - other.x, self.y - other.y, self.z - other.z)
-
-    def __add__(self, other):
-        return Point3D(self.x + other.x, self.y + other.y, self.z + other.z)
-
-    def __str__(self):
-        return f"({self.x}, {self.y}, {self.z})"
-
-    def __repr__(self):
-        return f"({self.x}, {self.y}, {self.z})"
-
-    def __hash__(self):
-        return hash((self.x, self.y, self.z))
-
-    def __lt__(self, other):
-        return (self.x, self.y, self.z) < (other.x, other.y, other.z)
-
-    def manhattan_distance(self, other):
-        return abs(self.x - other.x) + abs(self.y - other.y) + abs(self.z - other.z)
-
-    def rotate_x(self):
-        return Point3D(self.x, -self.z, self.y)
-
-    def rotate_y(self):
-        return Point3D(self.z, self.y, -self.x)
-
-    def rotate_z(self):
-        return Point3D(self.y, -self.x, self.z)
 
 
 class Scanner:
